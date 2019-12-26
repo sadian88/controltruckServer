@@ -23,10 +23,10 @@ class ChequeoListController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const chequeo = yield database_1.default.query('SELECT * FROM FPreop_1 WHERE id = ?', [id]);
-            console.log(chequeo.length);
-            if (chequeo.length > 0) {
-                return res.json(chequeo[0]);
+            const games = yield database_1.default.query('SELECT * FROM FPreop_1 WHERE id = ?', [id]);
+            console.log(games.length);
+            if (games.length > 0) {
+                return res.json(games[0]);
             }
             res.status(404).json({ text: "The game doesn't exits" });
         });

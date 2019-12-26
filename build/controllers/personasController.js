@@ -13,27 +13,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class ChequeoListController {
+class PersonasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const FPreop_1 = yield database_1.default.query('SELECT * FROM FPreop_1');
-            res.json(FPreop_1);
+            const Persona = yield database_1.default.query('SELECT * FROM personas');
+            res.json(Persona);
         });
     }
-    getOne(req, res) {
+    getOneByUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const chequeo = yield database_1.default.query('SELECT * FROM FPreop_1 WHERE id = ?', [id]);
-            console.log(chequeo.length);
-            if (chequeo.length > 0) {
-                return res.json(chequeo[0]);
+            const persona = yield database_1.default.query('SELECT * FROM personas WHERE usuarioid= ?', [id]);
+            console.log(persona.length);
+            if (persona.length > 0) {
+                return res.json(persona[0]);
             }
-            res.status(404).json({ text: "The game doesn't exits" });
+            res.status(404).json({ status: 404 });
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO FPreop_1 set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO personas set ?', [req.body]);
             res.json({ status: 200, message: 'Chequeo guardado !!' });
         });
     }
@@ -41,17 +41,17 @@ class ChequeoListController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE FPreop_1 set ? WHERE id = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE personas set ? WHERE id = ?', [req.body, id]);
             res.json({ message: "The game was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM FPreop_1 WHERE id = ?', [id]);
+            yield database_1.default.query('DELETE FROM personas WHERE id = ?', [id]);
             res.json({ message: "The game was deleted" });
         });
     }
 }
-const chequeoListController = new ChequeoListController;
-exports.default = chequeoListController;
+const personasController = new PersonasController;
+exports.default = personasController;

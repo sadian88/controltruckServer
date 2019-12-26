@@ -7,6 +7,7 @@ import config from './configs/config';
 
 import indexRoutes from './routes/indexRoutes';
 import chequeoListRoutes from './routes/chequeoListRoutes';
+import personasRouter from './routes/personasRoutes';
 
 
 
@@ -32,6 +33,7 @@ class Server {
     routes(): void {
         this.app.use('/api/', indexRoutes);
         this.app.use('/api/chequeo', chequeoListRoutes);
+        this.app.use('/api/personas', personasRouter);
     }
 
     start() {

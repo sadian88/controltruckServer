@@ -10,10 +10,10 @@ class ChequeoListController {
 
     public async getOne(req: Request, res: Response): Promise<any> {
         const { id } = req.params;
-        const games = await pool.query('SELECT * FROM FPreop_1 WHERE id = ?', [id]);
-        console.log(games.length);
-        if (games.length > 0) {
-            return res.json(games[0]);
+        const chequeo = await pool.query('SELECT * FROM FPreop_1 WHERE id = ?', [id]);
+        console.log(chequeo.length);
+        if (chequeo.length > 0) {
+            return res.json(chequeo[0]);
         }
         res.status(404).json({ text: "The game doesn't exits" });
     }
