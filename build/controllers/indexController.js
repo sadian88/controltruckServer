@@ -44,14 +44,13 @@ class IndexController {
     }
     auth(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.body);
             if (req.body) {
                 const user = req.body.email;
                 const password = req.body.password;
                 const Usuario = yield database_1.default.query('SELECT * FROM usuario WHERE Email = ? and Password = ?', [user, password]);
                 if (Usuario.length > 0) {
                     const token = jsonwebtoken_1.default.sign({ user }, config_1.default.llave);
-                    res.json({ status: 200, usuario: Usuario, token: token });
+                    res.json({ usuario: Usuario, token: token });
                 }
                 else {
                     res.json({ status: 404, usuario: '', token: '' });

@@ -37,18 +37,18 @@ class IndexController {
     }
 
     public async auth(req: Request, res: Response): Promise<void> {
-        console.log(req.body);
+        
         if (req.body)
-        {
-            
+        {           
             const user= req.body.email;
             const password = req.body.password;
-            
-            const Usuario = await pool.query('SELECT * FROM usuario WHERE Email = ? and Password = ?', [user, password]);
-                                   
+
+            const Usuario = await pool.query('SELECT * FROM usuario WHERE Email = ? and Password = ?', [user, password]);          
+
             if (Usuario.length > 0) {
+
                 const token = jwt.sign({user}, config.llave );
-                res.json({ status:200,usuario:Usuario,token: token });
+                res.json({ usuario:Usuario, token:token });
             }
             else
             {
