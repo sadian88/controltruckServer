@@ -10,6 +10,7 @@ const config_1 = __importDefault(require("./configs/config"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const chequeoListRoutes_1 = __importDefault(require("./routes/chequeoListRoutes"));
 const personasRoutes_1 = __importDefault(require("./routes/personasRoutes"));
+const vehiculosRoutes_1 = __importDefault(require("./routes/vehiculosRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -28,6 +29,7 @@ class Server {
         this.app.use('/api/', indexRoutes_1.default);
         this.app.use('/api/chequeo', chequeoListRoutes_1.default);
         this.app.use('/api/personas', personasRoutes_1.default);
+        this.app.use('/api/vehiculos', vehiculosRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

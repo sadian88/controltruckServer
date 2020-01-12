@@ -8,6 +8,7 @@ import config from './configs/config';
 import indexRoutes from './routes/indexRoutes';
 import chequeoListRoutes from './routes/chequeoListRoutes';
 import personasRouter from './routes/personasRoutes';
+import vehiculosRouter from './routes/vehiculosRoutes';
 
 
 
@@ -34,6 +35,7 @@ class Server {
         this.app.use('/api/', indexRoutes);
         this.app.use('/api/chequeo', chequeoListRoutes);
         this.app.use('/api/personas', personasRouter);
+        this.app.use('/api/vehiculos', vehiculosRouter);
     }
 
     start() {
